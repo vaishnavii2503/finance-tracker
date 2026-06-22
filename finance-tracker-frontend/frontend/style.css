@@ -1,0 +1,251 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --paper: #F7F4EC;
+  --ink: #2B2823;
+  --ink-soft: #6B6457;
+  --line: #DDD6C7;
+  --moss: #5C7A5C;       /* under budget / positive */
+  --rust: #B6553E;       /* over budget / warning */
+  --panel: #FFFFFF;
+
+  --font-display: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+  --font-body: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --radius: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2 {
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 28px 32px 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar h1 {
+  font-size: 1.6rem;
+  letter-spacing: 0.01em;
+}
+
+.month-label {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* ---------- Layout ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 20px;
+  padding: 24px 32px 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+}
+
+.panel h2 {
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+
+.panel-wide {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Forms ---------- */
+.stacked-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-row label {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.field-row input {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.field-row input:focus {
+  outline: 2px solid var(--moss);
+  outline-offset: 1px;
+}
+
+button {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 16px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+button:hover {
+  background: #44403a;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 2px;
+}
+
+.form-error {
+  color: var(--rust);
+  font-size: 0.85rem;
+  margin: 0;
+  min-height: 1em;
+}
+
+/* ---------- Summary / budget gauges (signature element) ---------- */
+.summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.summary-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.summary-row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.9rem;
+}
+
+.summary-category {
+  font-weight: 600;
+}
+
+.summary-amounts {
+  font-family: var(--font-display);
+  color: var(--ink-soft);
+}
+
+.summary-amounts strong {
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.gauge-track {
+  height: 8px;
+  background: var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.gauge-fill {
+  height: 100%;
+  background: var(--moss);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.gauge-fill.over {
+  background: var(--rust);
+}
+
+.over-flag {
+  font-size: 0.78rem;
+  color: var(--rust);
+  font-weight: 600;
+}
+
+/* ---------- Expense table ---------- */
+.expense-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.expense-table th {
+  text-align: left;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--line);
+  padding: 8px 10px;
+}
+
+.expense-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.expense-table .num {
+  text-align: right;
+  font-family: var(--font-display);
+}
+
+.expense-table .delete-btn {
+  background: none;
+  color: var(--ink-soft);
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.expense-table .delete-btn:hover {
+  color: var(--rust);
+  background: none;
+  text-decoration: underline;
+}
+
+.empty-state {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
